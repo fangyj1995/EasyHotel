@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>240</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>客房
+--
+类型
+总数量
+可用数量
+原始价格
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>270</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+维护</panel_attributes>
+    <additional_attributes>10.0;20.0;190.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>240</y>
+      <w>110</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>酒店工作人员
+--
+工号
+姓名
+密码
+酒店</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>30</x>
+      <y>160</y>
+      <w>570</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>CCD8_维护客房可用信息</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
