@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>酒店搜索</title>
+<style>
+  .error{
+  border-color:red;
+  }
+  
+</style>
+</head>
+<body>
+<form action="#" th:action="searchList" th:object="${searchForm}" method="post">
+ <input type="text" th:field="*{name}" placeholder="酒店名称" ></input>
+ <input type="text" th:field="*{startDate}" placeholder="入住日期" ></input>
+ <input type="text" th:field="*{endDate}" placeholder="退房日期" ></input>
+ <input type="text" th:field="*{roomKind}" placeholder="房间种类" ></input>
+ <input type="text" th:field="*{roomNum}" placeholder="房间数量" ></input>
+ 
+ <input type="submit" />
+ 
+ <div class="errors" th:if="${#fields.hasErrors('*')}">
+  <ul>
+   <li th:each="err:${#fields.errors('*')}" th:text="${err}" > </li>
+  </ul>
+ </div>
+ 
+</form>
+<hr/>
+
+<div th:each="hotel:${hotelList}">
+ <a th:text="${hotel.name}" th:href="${'/EasyHotel/hotel/detail/'+hotel.id}"></a><br/>
+地址：<label th:text="${hotel.address}"></label><br/>
+  星级：<label th:text="${hotel.starLevel}"></label>星<br/>
+  评分：<label th:text="${hotel.rate}"></label>/5
+  客房数量：<label th:text="${hotel.roomNum}"></label>
+  <hr/>
+</div>
+
+</body>
+</html>
