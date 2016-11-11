@@ -21,4 +21,5 @@ public interface HotelDao {
 	int  insertHotel(HotelPo hotelPo);
 	int  modifyHotel(HotelPo hotelPo);
 	int  changeHotelAvaRate(double rate);
+	
 }

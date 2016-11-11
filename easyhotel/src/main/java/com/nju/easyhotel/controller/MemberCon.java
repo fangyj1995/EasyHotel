@@ -8,8 +8,7 @@ import com.nju.easyhotel.service.MemberService;
 @Controller
 public class MemberCon {
 
-	@Autowired
-	private MemberService memberService;
+	
 	public String signUp(){
 	return " ";//注册
     }

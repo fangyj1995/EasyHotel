@@ -25,14 +25,14 @@ public class HotelDaoImpl implements HotelDao{
 			
 			return new HotelPo(
 					rs.getString("Id"),
-					rs.getString("hotel_name"),
-					rs.getString("hotel_city"),
-					rs.getString("hotel_area"),
-					rs.getString("hotel_address"),
-					rs.getInt("hotel_starLevel"),
-					rs.getDouble("hotel_avgRate"),
-					rs.getString("hotel_des"),
-					rs.getInt("hotel_roomNum")
+					rs.getString("name"),
+					rs.getString("city"),
+					rs.getString("circle"),
+					rs.getString("address"),
+					rs.getInt("star_level"),
+					rs.getDouble("avg_grade"),
+					rs.getString("abstract"),
+					rs.getInt("room_num")
 					);
 		}		
 	}
@@ -43,7 +43,7 @@ public class HotelDaoImpl implements HotelDao{
 			, String roomKind, int roomNum,String sortType) {
 		// TODO Auto-generated method stub	
 		return jdbcTemplate.query(
-				"select * from hotel where hotel_name like '%"+name+"%'"
+				"select * from hotel where name like '%"+name+"%'"
 				, new HotelRowMapper());
 	}
 
@@ -83,6 +83,7 @@ public class HotelDaoImpl implements HotelDao{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 
 

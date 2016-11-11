@@ -14,8 +14,8 @@
 <body>
 <form action="#" th:action="searchList" th:object="${searchForm}" method="post">
  <input type="text" th:field="*{name}" placeholder="酒店名称" ></input>
- <input type="text" th:field="*{startDate}" placeholder="入住日期" ></input>
- <input type="text" th:field="*{endDate}" placeholder="退房日期" ></input>
+ <input type="text" th:field="*{startDate}" placeholder="入住日期（xxxx--xx-xx）" ></input>
+ <input type="text" th:field="*{endDate}" placeholder="退房日期（xxxx--xx-xx）" ></input>
  <input type="text" th:field="*{roomKind}" placeholder="房间种类" ></input>
  <input type="text" th:field="*{roomNum}" placeholder="房间数量" ></input>
  
@@ -31,7 +31,7 @@
 <hr/>
 
 <div th:each="hotel:${hotelList}">
- <a th:text="${hotel.name}" th:href="${'/EasyHotel/hotel/detail/'+hotel.id}"></a><br/>
+ <a th:text="${hotel.name}" th:href="${'/easyhotel/hotel/detail/'+hotel.id}"></a><br/>
 地址：<label th:text="${hotel.address}"></label><br/>
   星级：<label th:text="${hotel.starLevel}"></label>星<br/>
   评分：<label th:text="${hotel.rate}"></label>/5

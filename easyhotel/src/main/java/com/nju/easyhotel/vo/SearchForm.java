@@ -13,11 +13,11 @@ public class SearchForm {//搜索酒店时提及表单的Vo
 	String name;
 
 	@NotNull(message="入住日期不能为空")
-	@Future(message="入住日期错误")
+	@Future(message="入住日期不得早于现在时间")
 	Date startDate;
 	
 	@NotNull(message="退房日期不能为空")
-	@Future(message="退房日期错误")
+	@Future(message="退房日期不得早于现在时间")
 	Date endDate;
 	
 	String roomKind;

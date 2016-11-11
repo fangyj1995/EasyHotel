@@ -9,8 +9,7 @@ import com.nju.easyhotel.vo.RoomVo;
 @Controller
 public class RoomCon {
 
-	@Autowired
-	RoomService roomService;
+	
 	public String addRoom(RoomVo room){
 		return "";
 	}

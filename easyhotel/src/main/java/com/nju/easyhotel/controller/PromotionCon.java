@@ -8,8 +8,7 @@ import com.nju.easyhotel.service.PromotionService;
 @Controller
 public class PromotionCon {
 
-	@Autowired
-	PromotionService proService;
+	
 	public String hotelProInfoList(){
 		return "";
 	}

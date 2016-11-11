@@ -8,8 +8,7 @@ import com.nju.easyhotel.service.OrderService;
 @Controller
 public class OrderCon {
 
-	@Autowired
-	OrderService orderService;
+	
 	public String placeOrder(){//生成订单
 		return "";
 	}

@@ -1,5 +1,5 @@
 package com.nju.easyhotel;
-import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +24,6 @@ public class TestApplication {
      */
     public String greeting() {
         return "Hello World!";//返回值直接作为HTTP Response的Body部分返回给浏览器
-    }
-    @RequestMapping("/fang")
-    public String fang(){
-    	return "hello fang!";
     }
     /*URL中的变量可以用{variableName}来表示，同时在方法的参数中加上@PathVariable("variableName")，
          那么当请求被转发给该方法处理时，对应的URL中的变量会被自动赋值给被@PathVariable注解的参数（能够自动根据参数类型赋值，例如上例中的int）

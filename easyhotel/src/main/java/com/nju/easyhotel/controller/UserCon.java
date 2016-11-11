@@ -11,8 +11,7 @@ import com.nju.easyhotel.vo.WebMarketerVo;
 @Controller
 public class UserCon {
 
-	@Autowired 
-	UserService userService;
+	
 	
 	//网站营销人员
 	public String WebMarketerInfo(String userId){
