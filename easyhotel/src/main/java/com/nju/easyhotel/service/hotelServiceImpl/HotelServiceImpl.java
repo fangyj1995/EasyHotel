@@ -1,4 +1,4 @@
-package com.nju.easyhotel.service.impl;
+package com.nju.easyhotel.service.hotelServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import com.nju.easyhotel.po.HotelPo;
 import com.nju.easyhotel.service.HotelService;
 import com.nju.easyhotel.vo.HotelDetailVo;
 import com.nju.easyhotel.vo.HotelSearchResultVo;
+import com.nju.easyhotel.vo.HotelVo;
 import com.nju.easyhotel.vo.SearchForm;
 
 @Service
@@ -50,7 +51,7 @@ public class HotelServiceImpl implements HotelService{
 	
 	public HotelDetailVo getHotel(String id) {
 		// TODO Auto-generated method stub
-		HotelPo p=hotelDao.getHotel(id);
+		HotelPo p=hotelDao.getHotelById(id);
 		//System.out.println(p);
 		return new HotelDetailVo(
 				p.getHotel_id(),
@@ -78,4 +79,32 @@ public class HotelServiceImpl implements HotelService{
     		list.sort(HotelComparator.starLevel());   	
     	return list;
     }
+
+
+	@Override
+	public int commentHotel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteHotel(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int modifyHotel(HotelVo hotelvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int addHotel(HotelVo hotelvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.nju.easyhotel.dao.DaoOpMsg;
+
 import com.nju.easyhotel.dao.HotelDao;
 import com.nju.easyhotel.po.HotelPo;
 
@@ -40,7 +40,7 @@ public class HotelDaoImpl implements HotelDao{
 	
 	@Override
 	public List<HotelPo> searchHotel(String name, Date startDate, Date endDate
-			, String roomKind, int roomNum,String sortCondition) {
+			, String roomKind, int roomNum,String sortType) {
 		// TODO Auto-generated method stub	
 		return jdbcTemplate.query(
 				"select * from hotel where hotel_name like '%"+name+"%'"
@@ -48,28 +48,40 @@ public class HotelDaoImpl implements HotelDao{
 	}
 
 	@Override
-	public DaoOpMsg deleteHotel(String hotelId) {
+	public int deleteHotel(String hotelId) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
-	public DaoOpMsg insertHotel(HotelPo hotelPo) {
+	public int insertHotel(HotelPo hotelPo) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
-	public DaoOpMsg modifyHotel(HotelPo hotelPo) {
+	public int modifyHotel(HotelPo hotelPo) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override
-	public HotelPo getHotel(String hotelId) {
+	public HotelPo getHotelById(String hotelId) {
 		return jdbcTemplate.queryForObject(
 				"select * from hotel where id="+hotelId,
 				new HotelRowMapper());
+	}
+
+	@Override
+	public int insertHotelComment(String hotelId, String comment, double rate) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int changeHotelAvaRate(double rate) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

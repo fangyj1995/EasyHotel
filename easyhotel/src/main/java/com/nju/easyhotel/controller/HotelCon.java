@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nju.easyhotel.service.HotelService;
 import com.nju.easyhotel.tools.IntegerEditor;
+import com.nju.easyhotel.vo.HotelVo;
 import com.nju.easyhotel.vo.SearchForm;
 
 @Controller
@@ -31,11 +32,7 @@ private HotelService hotelService;
 protected void initBinder(WebDataBinder binder) {  
     binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));     
 }
-//处理"展示酒店搜索界面"的请求，当url为.../EasyHotel/hotel/searchPage时执行这个方法
-@RequestMapping(value="/searchPage",method = RequestMethod.GET)
-public String showSearchPage(SearchForm searchForm){	
-	return "hotelSearch";
-}
+
 //处理展示"酒店详细信息页面"的请求，当url为.../EasyHotel/hotel/detail/xx时执行这个方法
 @RequestMapping(value="/detail/{hotelId}",method = RequestMethod.GET)
 public String showHotelDeatil(@PathVariable String hotelId,Model model){
@@ -43,6 +40,12 @@ public String showHotelDeatil(@PathVariable String hotelId,Model model){
 	model.addAttribute("hotel", hotelService.getHotel(hotelId));
 	return "hotelDetail";
 }
+//处理"展示酒店搜索界面"的请求，当url为.../EasyHotel/hotel/searchPage时执行这个方法
+@RequestMapping(value="/searchPage",method = RequestMethod.GET)
+public String showSearchPage(SearchForm searchForm){	
+	return "hotelSearch";
+}
+
 //处理"酒店搜索"请求,当url为.../EasyHotel/hotel/searchList时执行这个方法
 @RequestMapping(value="/searchList",method = RequestMethod.POST)
 public String processSearch(@Valid SearchForm searchForm,BindingResult bindingResult, Model model){
@@ -51,5 +54,26 @@ public String processSearch(@Valid SearchForm searchForm,BindingResult bindingRe
 	}	
 	model.addAttribute("hotelList",hotelService.searchHotel(searchForm));
 	return "hotelSearch";
+}
+
+@RequestMapping(value="/comment",method = RequestMethod.PUT)
+public String commentHotel(){
+	if(hotelService.commentHotel()==1)
+	    return "";
+	else 
+		return "error";
+}
+@RequestMapping(value="/add",method = RequestMethod.PUT)
+public String addHotel(){
+
+	return "";
+}
+@RequestMapping(value="/delete",method = RequestMethod.DELETE)
+public String deleteHotel(){
+	return "";
+}
+@RequestMapping(value="/modify",method = RequestMethod.DELETE)
+public String modifyHotel(){
+	return "";
 }
 }

@@ -1,6 +1,6 @@
 package com.nju.easyhotel.vo;
 
-import com.nju.easyhotel.service.impl.HotelSortInfo;
+import com.nju.easyhotel.service.hotelServiceImpl.HotelSortInfo;
 
 public class HotelSearchResultVo implements HotelSortInfo{
 private String id;

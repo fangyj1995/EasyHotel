@@ -1,4 +1,4 @@
-package com.nju.easyhotel.service.impl;
+package com.nju.easyhotel.service.hotelServiceImpl;
 
 public interface HotelSortInfo {
 	

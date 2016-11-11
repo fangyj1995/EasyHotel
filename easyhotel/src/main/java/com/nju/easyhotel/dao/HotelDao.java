@@ -12,11 +12,13 @@ public interface HotelDao {
 			 String name
 			,Date startDate
 			,Date endDate
-			,String roomKind
+			,String roomType
 			,int roomNum
-			,String sortCondition);
-	HotelPo  getHotel(String hotelId);
-	DaoOpMsg  deleteHotel(String hotelId);
-	DaoOpMsg  insertHotel(HotelPo hotelPo);
-	DaoOpMsg  modifyHotel(HotelPo hotelPo);
+			,String sortType);
+	HotelPo  getHotelById(String hotelId);
+	int  insertHotelComment(String hotelId,String comment,double rate);
+	int  deleteHotel(String hotelId);
+	int  insertHotel(HotelPo hotelPo);
+	int  modifyHotel(HotelPo hotelPo);
+	int  changeHotelAvaRate(double rate);
 }
