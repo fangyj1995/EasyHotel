@@ -64,7 +64,5 @@ public class TestApplication {
     POST方法用来对资源进行状态转换
     DELETE方法用来删除已有的资源
      * */
-    public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
-    }
+
 }
