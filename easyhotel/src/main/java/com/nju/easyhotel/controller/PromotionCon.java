@@ -15,14 +15,25 @@ public class PromotionCon {
 	public String webSiteProInfoList(){
 		return "";
 	}
-	public String addPro(){
+	
+	public String addWebSitePro(){
 		return "";
 	}
-	public String deletePro(){
-		return "";
-	}
-	public String modifyPro(){
+	public String addHotelPro(){
 		return "";
 	}
 	
+	public String deleteWebSitePro(){
+		return "";
+	}
+	public String deleteHotelPro(){
+		return "";
+	}
+	
+	public String modifyWebSitePro(){
+		return "";
+	}
+	public String modifyHotelPro(){
+		return "";
+	}
 }

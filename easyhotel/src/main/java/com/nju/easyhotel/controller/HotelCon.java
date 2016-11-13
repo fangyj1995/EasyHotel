@@ -32,7 +32,6 @@ private HotelService hotelService;
 protected void initBinder(WebDataBinder binder) {  
     binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));     
 }
-
 //处理展示"酒店详细信息页面"的请求，当url为.../EasyHotel/hotel/detail/xx时执行这个方法
 @RequestMapping(value="/detail/{hotelId}",method = RequestMethod.GET)
 public String showHotelDeatil(@PathVariable String hotelId,Model model){
@@ -68,7 +67,7 @@ public String addHotel(){
 
 	return "";
 }
-@RequestMapping(value="/delete",method = RequestMethod.DELETE)
+@RequestMapping(value="/delete/{hotelId}",method = RequestMethod.DELETE)
 public String deleteHotel(){
 	return "";
 }

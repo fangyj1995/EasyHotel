@@ -12,15 +12,19 @@ public class OrderCon {
 	public String placeOrder(){//生成订单
 		return "";
 	}
+	
 	public String memberOrders(String userId){//客户订单
 		return "";
 	}
+	
 	public String hotelOrders(String hotelId){//酒店订单
 		return "";
 	}
+	
 	public String revokeOrder(String orderId){//撤销订单
 		return "";
 	}
+	
 	public String executeOrder(String orderId){//执行订单
 		return "";
 	}
