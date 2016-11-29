@@ -28,45 +28,46 @@ public class SearchForm {//搜索酒店时提及表单的Vo
 
     String sortCondition;//"价格"或"星级"或"评分"或null
     
-public String getSortCondition() {
+
+    public String getSortCondition() {
 		return sortCondition;
 	}
 	public void setSortCondition(String sortCondition) {
 		this.sortCondition = sortCondition;
 	}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public String getRoomKind() {
-	return roomKind;
-}
-public void setRoomKind(String roomKind) {
-	this.roomKind = roomKind;
-}
+	
 
-public Date getStartDate() {
-	return startDate;
-}
-public void setStartDate(Date startDate) {
-	this.startDate = startDate;
-}
-public Date getEndDate() {
-	return endDate;
-}
-public void setEndDate(Date endDate) {
-	this.endDate = endDate;
-}
-public int getRoomNum() {
-	return roomNum;
-}
-public void setRoomNum(int roomNum) {
-	this.roomNum = roomNum;
-}
-
-public String toString(){
-	return name+"； "+startDate+"； "+endDate+"； "+roomKind+"； "+roomNum;
-}
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public String getRoomKind() {
+		return roomKind;
+	}
+	public void setRoomKind(String roomKind) {
+		this.roomKind = roomKind;
+	}
+	public int getRoomNum() {
+		return roomNum;
+	}
+	public void setRoomNum(int roomNum) {
+		this.roomNum = roomNum;
+	}
+    public String toString(){
+	    return name+"; "+startDate+"; "+endDate+"; "+roomKind+"; "+roomNum;
+    }
 }
