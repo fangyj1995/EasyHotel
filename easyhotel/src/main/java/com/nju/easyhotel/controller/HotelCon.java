@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nju.easyhotel.service.HotelService;
+import com.nju.easyhotel.service.hotelServiceImpl.SearchForm;
 import com.nju.easyhotel.tools.IntegerEditor;
 import com.nju.easyhotel.vo.HotelVo;
-import com.nju.easyhotel.vo.SearchForm;
 
 @Controller
 @RequestMapping(value="/easyhotel/hotel")//所有匹配.../EasyHotel/hotel的url都会执行这个类中的方法

@@ -10,10 +10,7 @@ import com.nju.easyhotel.dao.HotelDao;
 import com.nju.easyhotel.po.HotelPo;
 import com.nju.easyhotel.po.HotelSearchResultPo;
 import com.nju.easyhotel.service.HotelService;
-import com.nju.easyhotel.vo.HotelDetailVo;
-import com.nju.easyhotel.vo.HotelSearchResultVo;
 import com.nju.easyhotel.vo.HotelVo;
-import com.nju.easyhotel.vo.SearchForm;
 
 @Service
 public class HotelServiceImpl implements HotelService{
@@ -27,10 +24,12 @@ public class HotelServiceImpl implements HotelService{
 				searchForm.getEndDate(), 
 				searchForm.getRoomKind(), 
 				searchForm.getRoomNum(), 
-				searchForm.getSortCondition(), "南京", "鼓楼区"
+				searchForm.getSortCondition(), 
+				searchForm.getCity(), 
+				searchForm.getCircle()
 				);			
-		List<HotelSearchResultVo> list=Search.getResultList(poList);
-		Search.sort("rate",list);
+		List<HotelSearchResultVo> list=SearchDeal.getResultList(poList);
+		SearchDeal.sort("rate",list);
 		return list;
 	}			
 	public HotelDetailVo getHotel(String id) {

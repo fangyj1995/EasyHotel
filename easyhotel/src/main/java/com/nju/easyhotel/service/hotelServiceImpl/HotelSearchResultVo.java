@@ -1,10 +1,8 @@
-package com.nju.easyhotel.vo;
+package com.nju.easyhotel.service.hotelServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import com.nju.easyhotel.service.hotelServiceImpl.HotelSortInfo;
 
 public class HotelSearchResultVo implements HotelSortInfo{
 	private String id;
