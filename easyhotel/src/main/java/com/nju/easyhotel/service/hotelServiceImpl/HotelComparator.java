@@ -1,8 +1,6 @@
 package com.nju.easyhotel.service.hotelServiceImpl;
 
 import java.util.Comparator;
-
-import com.nju.easyhotel.vo.HotelSearchResultVo;
 public class HotelComparator{
    public static Comparator<HotelSortInfo> price(){
 	   return new Comparator<HotelSortInfo>(){

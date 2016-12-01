@@ -1,4 +1,4 @@
-package com.nju.easyhotel.vo;
+package com.nju.easyhotel.service.hotelServiceImpl;
 
 import java.util.List;
 

@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.nju.easyhotel.po.HotelSearchResultPo;
-import com.nju.easyhotel.vo.HotelSearchResultVo;
 
-public class Search {
+public class SearchDeal {
 
 	public static List<HotelSearchResultVo> getResultList(List<HotelSearchResultPo> poList){
 	    Set<String> id=new HashSet<String>();
@@ -45,8 +44,7 @@ public class Search {
     		list.sort(HotelComparator.rate());
     	}
     	else
-    		list.sort(HotelComparator.starLevel());   
-    	System.out.println(list.get(0).getAvgGrade());
+    		list.sort(HotelComparator.starLevel());      	
     	return list;
     }
 }
