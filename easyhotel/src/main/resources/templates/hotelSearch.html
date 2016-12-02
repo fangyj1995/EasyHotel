@@ -18,8 +18,8 @@
  <input type="text" th:field="*{endDate}" placeholder="退房日期（xxxx--xx-xx）" ></input>
  <input type="text" th:field="*{roomKind}" placeholder="房间种类" ></input>
  <input type="text" th:field="*{roomNum}" placeholder="房间数量" ></input>
- <input type="hidden" th:field="*{city}" placeholder="城市" value="南京"></input>
- <input type="hidden" th:field="*{circle}" placeholder="商圈" value="鼓楼区"></input>
+ <input type="hidden" th:field="*{city}" value="南京"></input>
+ <input type="hidden" th:field="*{circle}"  value="鼓楼区"></input>
  <input type="submit" />
  
  <div class="errors" th:if="${#fields.hasErrors('*')}">

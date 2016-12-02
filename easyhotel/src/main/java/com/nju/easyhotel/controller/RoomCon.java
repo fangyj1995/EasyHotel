@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.nju.easyhotel.service.RoomService;
-import com.nju.easyhotel.vo.RoomVo;
+import com.nju.easyhotel.vo.RoomTypeVo;
 
 @Controller
 public class RoomCon {
 
 	
-	public String addRoom(RoomVo room){
+	public String addRoom(RoomTypeVo room){
 		return "";
 	}
 	public String checkIn(String orderId){

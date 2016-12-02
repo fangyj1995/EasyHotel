@@ -3,7 +3,7 @@ package com.nju.easyhotel.dao;
 import java.util.List;
 
 import com.nju.easyhotel.po.HotelPromotionPo;
-import com.nju.easyhotel.po.WebPromotionPo;
+import com.nju.easyhotel.po.WebMarketerPo;
 
 public interface PromotionDao {
 
@@ -14,5 +14,5 @@ public interface PromotionDao {
 	int modifyHotelPromotion();
 	
 	List<HotelPromotionPo> getPromotionListByHotel(String hotelId);
-	List<WebPromotionPo> getWebSitePromotionList();
+	List<WebMarketerPo> getWebSitePromotionList();
 }

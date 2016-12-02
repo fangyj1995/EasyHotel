@@ -24,7 +24,10 @@ public class SearchForm {//搜索酒店时提及表单的Vo
     private String city;
     private String circle;
 
-    public SearchForm(String name, Date startDate, Date endDate, String roomKind, int roomNum,String city,String circle) {
+    public SearchForm() {
+		super();
+	}
+	public SearchForm(String name, Date startDate, Date endDate, String roomKind, int roomNum,String city,String circle) {
 		super();
 		this.name = name;
 		this.startDate = startDate;

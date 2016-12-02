@@ -26,5 +26,12 @@
   <hr/>
 </div>
 
+<div th:each="room:${rooms}">
+ <p>
+   <label>房型：</label><label th:text="${room.type}"></label>
+   <label>价格：</label><label th:text="${room.price}"></label>
+   <label>床数量：</label><label th:text="${room.bedNum}"></label>
+ </p>
+</div>
 </body>
 </html>

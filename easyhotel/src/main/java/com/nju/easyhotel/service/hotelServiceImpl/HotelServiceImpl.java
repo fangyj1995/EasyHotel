@@ -32,16 +32,19 @@ public class HotelServiceImpl implements HotelService{
 		SearchDeal.sort("rate",list);
 		return list;
 	}			
-	public HotelDetailVo getHotel(String id) {
+	public HotelVo getHotel(String id) {
 		HotelPo p=hotelDao.getHotelById(id);
-		return new HotelDetailVo(
+		return new HotelVo(
 				p.getHotel_id(),
 				p.getHotel_name(), 
 				p.getHotel_address(), 
 				p.getHotel_starLevel(), 
 				p.getHotel_avgRate(),
-				p.getHotel_roomNum(),
-				p.getHotel_des()
+				p.getHotel_des(),
+				p.getFacilit_service(),
+				p.getHotel_roomNum(),				
+				p.getHotel_city(),
+				p.getHotel_circle()
 				);		
 	}
 	

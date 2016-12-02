@@ -34,7 +34,8 @@ public class HotelDaoImpl implements HotelDao{
 					rs.getInt("star_level"),
 					rs.getDouble("avg_grade"),
 					rs.getString("abstract"),
-					rs.getInt("room_num")
+					rs.getInt("room_num"),
+					rs.getString("facility_service")
 					);
 		}		
 	}
@@ -103,9 +104,7 @@ public class HotelDaoImpl implements HotelDao{
 
 	@Override
 	public HotelPo getHotelById(String hotelId) {
-		return jdbcTemplate.queryForObject(
-				"select * from hotel where id="+hotelId,
-				new HotelRowMapper());
+		return jdbcTemplate.queryForObject("select * from hotel where id="+hotelId,new HotelRowMapper());
 	}
 
 	@Override

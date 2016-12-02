@@ -10,7 +10,7 @@ import com.nju.easyhotel.vo.HotelVo;
 public interface HotelService {
 	
    public List<HotelSearchResultVo> searchHotel(SearchForm searchForm);//搜索
-   public HotelDetailVo getHotel(String id);//详情
+   public HotelVo getHotel(String id);//详情
    public int commentHotel();//评论
    public int deleteHotel(String id);//删除
    public int modifyHotel(HotelVo hotelvo);//修改

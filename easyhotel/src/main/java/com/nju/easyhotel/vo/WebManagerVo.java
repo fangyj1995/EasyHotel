@@ -1,14 +1,14 @@
-package com.nju.easyhotel.po;
+package com.nju.easyhotel.vo;
 
-public class WebMarketerPo {
+public class WebManagerVo {
 	private String id;
 	private String account;
 	private String password;
 	
-	public WebMarketerPo() {
+	public WebManagerVo() {
 		super();
 	}
-	public WebMarketerPo(String id, String account, String password) {
+	public WebManagerVo(String id, String account, String password) {
 		super();
 		this.id = id;
 		this.account = account;
@@ -31,5 +31,10 @@ public class WebMarketerPo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "WebManagerVo [id=" + id + ", account=" + account + ", password=" + password + "]";
 	}	
+	
 }

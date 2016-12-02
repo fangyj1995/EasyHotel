@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.nju.easyhotel.dao.PromotionDao;
 import com.nju.easyhotel.po.HotelPromotionPo;
-import com.nju.easyhotel.po.WebPromotionPo;
+import com.nju.easyhotel.po.WebMarketerPo;
 
 @Repository
 public class PromotionDaoImpl implements PromotionDao{
@@ -45,7 +45,7 @@ public class PromotionDaoImpl implements PromotionDao{
 	}
 
 	@Override
-	public List<WebPromotionPo> getWebSitePromotionList() {
+	public List<WebMarketerPo> getWebSitePromotionList() {
 		// TODO Auto-generated method stub
 		return null;
 	}

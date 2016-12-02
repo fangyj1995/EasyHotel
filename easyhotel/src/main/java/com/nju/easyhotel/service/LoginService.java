@@ -1,10 +1,22 @@
 package com.nju.easyhotel.service;
 
+import com.nju.easyhotel.vo.HotelManagerVo;
+import com.nju.easyhotel.vo.MemberVo;
+import com.nju.easyhotel.vo.WebManagerVo;
+import com.nju.easyhotel.vo.WebMarketerVo;
+
 public interface LoginService {
 
-	int login(String username,String pwd);
-	boolean isHotelManager();//用时是酒店管理员吗？
-	boolean isMember();//用户是会员吗？
-	boolean isWebMarketer();//用户是网站营销人员吗？
-	boolean isWebManager();//用户是网站管理人员吗？
+	MemberVo memberLogin(String username,String pwd);
+	HotelManagerVo hotelLogin(String username,String pwd);
+	WebManagerVo managerLogin(String username,String pwd);
+	WebMarketerVo marketerLogin(String username,String pwd);
+	
+	int logOut(String username);
+	int memberLogOut(String username);
+	int hotelLogOut(String username);
+	int managerLogOut(String username);
+	int marketerLogOut(String username);
+	
+	int signIn(String username,String pwd);
 }
