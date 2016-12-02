@@ -23,7 +23,7 @@ public class TestApplication {
      *  "/"用来匹配url请求
      */
     public String greeting() {
-        return "Hello World!";//返回值直接作为HTTP Response的Body部分返回给浏览器
+        return " <a href='http://localhost:8011/easyhotel/hotel/searchPage'>请访问 </a>";//返回值直接作为HTTP Response的Body部分返回给浏览器
     }
     /*URL中的变量可以用{variableName}来表示，同时在方法的参数中加上@PathVariable("variableName")，
          那么当请求被转发给该方法处理时，对应的URL中的变量会被自动赋值给被@PathVariable注解的参数（能够自动根据参数类型赋值，例如上例中的int）

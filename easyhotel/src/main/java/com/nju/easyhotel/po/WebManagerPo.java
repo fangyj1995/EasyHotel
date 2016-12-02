@@ -1,14 +1,14 @@
 package com.nju.easyhotel.po;
 
-public class WebMarketerPo {
+public class WebManagerPo {
 	private String id;
 	private String account;
 	private String password;
 	
-	public WebMarketerPo() {
+	public WebManagerPo() {
 		super();
 	}
-	public WebMarketerPo(String id, String account, String password) {
+	public WebManagerPo(String id, String account, String password) {
 		super();
 		this.id = id;
 		this.account = account;

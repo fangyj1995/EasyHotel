@@ -2,14 +2,14 @@ package com.nju.easyhotel.dao;
 
 import java.util.List;
 
-import com.nju.easyhotel.po.RoomPo;
+import com.nju.easyhotel.po.RoomTypePo;
 
 public interface RoomDao {
 
-	int insertRoom(RoomPo room);
-	List<RoomPo> getRoomListByHotel(String hotelId);
+	int insertRoom(RoomTypePo room);
+	int modifyRoom(RoomTypePo room);
+	int deleteRoom(String roomId);
+	RoomTypePo getRoom(String roomId);
+	List<RoomTypePo> getAllRoomsByHotel(String hotelId);
 	
-	int getRoomAvailableNum(String roomId);//获得可用客房的数量
-	int deRoomAvaliableNum(String roomId);//客房可用数量减一
-	int inRoomAvaliableNum(String roomId);//客房可用数量加一
 }

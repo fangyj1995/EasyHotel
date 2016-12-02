@@ -1,6 +1,7 @@
 package com.nju.easyhotel.service.hotelServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -62,7 +63,9 @@ public class HotelSearchResultVo implements HotelSortInfo{
 	public int level() {
 		return this.getStarLevel();
 	}
-	
+	public String toString(){
+		return id+" "+name+" "+address+" "+starLevel+" "+avgGrade+"\n"+Arrays.toString(rooms.toArray());
+	}
 	private class RoomInfo implements  Comparable<RoomInfo>{
 		private String type;
 		private double price;
@@ -81,6 +84,9 @@ public class HotelSearchResultVo implements HotelSortInfo{
 		}
 		public int getAvailable() {
 			return available;
+		}
+		public String toString(){
+			return type+"  ￥ "+price+"剩余："+available;
 		}
 		@Override
 		public int compareTo(RoomInfo r) {		
