@@ -90,6 +90,13 @@ public class HotelPo {
 	public void setFacilit_service(String facilit_service) {
 		this.facilit_service = facilit_service;
 	}
+	@Override
+	public String toString() {
+		return "HotelPo [hotel_id=" + hotel_id + ", hotel_name=" + hotel_name + ", hotel_city=" + hotel_city
+				+ ", hotel_circle=" + hotel_circle + ", hotel_address=" + hotel_address + ", hotel_starLevel="
+				+ hotel_starLevel + ", hotel_avgRate=" + hotel_avgRate + ", hotel_des=" + hotel_des + ", hotel_roomNum="
+				+ hotel_roomNum + ", facilit_service=" + facilit_service + "]";
+	}
 
 
 

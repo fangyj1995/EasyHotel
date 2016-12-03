@@ -4,9 +4,9 @@ import com.nju.easyhotel.vo.MemberVo;
 
 public interface MemberService {
 
-	 int signUp();
-	 int creditRecharge();
-	 int getCredit();
-	 MemberVo memberInfo();
-	 int modifyMemberInfo(MemberVo member);
+	 int signUp(MemberVo member);
+	 int creditRecharge(String memberId,int credit);
+	 int getCredit(String memberId);
+	 MemberVo getMemberById(String memberId);
+	 int modifyMember(MemberVo member);
 }

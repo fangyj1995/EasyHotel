@@ -75,5 +75,12 @@ public class HotelSearchResultPo {
 		this.available = available;
 	}
 
+	@Override
+	public String toString() {
+		return "HotelSearchResultPo [id=" + id + ", name=" + name + ", address=" + address + ", star_level="
+				+ star_level + ", avg_grade=" + avg_grade + ", type=" + type + ", price=" + price + ", available="
+				+ available + "]";
+	}
+
 
 }

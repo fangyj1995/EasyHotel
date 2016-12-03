@@ -25,10 +25,14 @@ public class SearchDeal {
 						 p.getId(),p.getName(),p.getAddress(),
 						 p.getStar_level(),p.getAvg_grade()
 					 );
-				row.addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());
+				if(p.getType()!=null)
+				{
+					row.addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());					
+				}
 				list.add(row);j++;
 			}
 			else{
+				if(p.getType()!=null)
 				list.get(j-1).addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());			
 			}
 	    }

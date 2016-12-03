@@ -11,8 +11,12 @@ public interface OrderDao {
 	public int deleteOrder(String orderId);
 	public int setOrderState(String orderId,String state);
 	
-	public List<OrderPo> getOrdersByMember(String memberId);
-	public List<OrderPo> getOrdersByHotel(String hotelId);
+	public List<OrderPo> getAllOrderByMember(String memberId);
+	public List<OrderPo> getAllOrderByHotel(String hotelId);
+	
+	public List<OrderPo> getMemberOrdersByState(String memberId,String state);
+	public List<OrderPo> getHotelOrdersByState(String hotelId,String state);
+	
 	public OrderPo getOrderById(String orderId);
 	
 	public int setCheckInTime(String orderId,Date checkInTime);

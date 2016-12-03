@@ -29,33 +29,37 @@ public class HotelDaoImpl implements HotelDao{
 		String sdate=DateFormat.format(startDate);
 		String edate=DateFormat.format(endDate);
 		String sql1="select * from("
-				+ "select hotel.id,hotel.name as hotelname,address,star_level,avg_grade,room_type.name as roomtype,room_type.price,room_type.num-ifnull(sum(orders.room_num),0) as avail "
-				+ "from (room_type inner join hotel on room_type.hotel_key=hotel.id) left join orders on room_type.id=orders.room_type_key "
+				+ "select hotel.id,hotel.name as hotelname,address,star_level,avg_grade,city,circle,roomInfo.* from"
+				+ "("
+				+ "select "
+				+ "room_type.hotel_key as hotelid,"
+				+ "room_type.name as roomtype,"
+				+ "room_type.price,"
+				+ "room_type.num-ifnull(sum(orders.room_num),0) as avail "
+				+ "from room_type  left join orders on room_type.id=orders.room_type_key "
 				+ "and "
-				+ "('"
-				+sdate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time "
-				+ " or '"
-				+edate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time "
+				+ "('"+sdate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time  "
+				+ "or "
+				+ "'"+edate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time"
 				+ ")"
-				+ "where hotel.name like '%"+name+"%' and hotel.city='"+city+"' and hotel.circle='"+circle+"' "
-				+ "and room_type.name like '%"+roomType.trim()+"%' "
-				+ "group by room_type.id"
-				+ ") hotel "
-				+ "where avail>0;";
-		System.out.println(sql1);		
+				+ "where  room_type.name like '%"+roomType+"%' group by room_type.id"
+				+ ") as roomInfo right join hotel on hotel.id=roomInfo.hotelid and avail>0"				
+				+ ") as hotel "
+				+ "where hotelname like '%"+name+"%'  and city='"+city+"' and circle='"+circle+"';";
+		System.out.println(sql1);	
 		List<HotelSearchResultPo> list=jdbcTemplate.query(sql1, new RowMapper<HotelSearchResultPo>()
 		{
 			@Override
 			public HotelSearchResultPo mapRow(ResultSet rs, int rowNum) throws SQLException {	
 				HotelSearchResultPo r=new HotelSearchResultPo(
-				rs.getString("hotel.id"),
-				rs.getString("hotel.hotelname"),
-				rs.getString("hotel.address"),
-				rs.getInt("hotel.star_level"),
-				rs.getDouble("hotel.avg_grade"),
-				rs.getString("hotel.roomtype"),
-				rs.getDouble("hotel.price"),
-				rs.getInt("hotel.avail")			
+				rs.getString("hotelid"),
+				rs.getString("hotelname"),
+				rs.getString("address"),
+				rs.getInt("star_level"),
+				rs.getDouble("avg_grade"),
+				rs.getString("roomtype"),
+				rs.getDouble("price"),
+				rs.getInt("avail")			
 				);
 				return r;
 			}			
