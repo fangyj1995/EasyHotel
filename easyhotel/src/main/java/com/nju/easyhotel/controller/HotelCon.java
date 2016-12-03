@@ -36,27 +36,26 @@ public class HotelCon {
 	protected void initBinder(WebDataBinder binder) {  
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));     
 	}
-	//处理展示"酒店详细信息页面"的请求，当url为.../EasyHotel/hotel/detail/xx时执行这个方法
+	//处理展示"酒店详细信息页面"的请求，当url为.../easyhotel/hotel/detail/xx时执行这个方法
 	@RequestMapping(value="/detail/{hotelId}",method = RequestMethod.GET)
 	public String showHotelDeatil(@PathVariable String hotelId,Model model){
-		System.out.println(hotelId);
+		//System.out.println(hotelId);
 		model.addAttribute("hotel", hotelService.getHotel(hotelId));
 		model.addAttribute("rooms", roomService.getAllRoomsByHotel(hotelId));
 		return "hotelDetail";
 	}
-	//处理"展示酒店搜索界面"的请求，当url为.../EasyHotel/hotel/searchPage时执行这个方法
-	@RequestMapping(value="/searchPage",method = RequestMethod.GET)
-	public String showSearchPage(SearchForm searchForm){	
+	//处理"展示酒店搜索界面"的请求，当url为.../easyhotel/hotel/search时执行这个方法
+	@RequestMapping(value="/search",method = RequestMethod.GET)
+	public String showSearchPage(SearchForm form){	
 		return "hotelSearch";
 	}
 
-	//处理"酒店搜索"请求,当url为.../EasyHotel/hotel/searchList时执行这个方法
-	@RequestMapping(value="/searchList",method = RequestMethod.POST)
-	public String processSearch(@Valid SearchForm searchForm,BindingResult bindingResult, Model model){
-		if(bindingResult.hasErrors()){
-			return "hotelSearch";
-		}	
-		model.addAttribute("hotelList",hotelService.searchHotel(searchForm));
+	//处理"酒店搜索"请求,当url为.../easyhotel/hotel/searchResultList时执行这个方法
+	@RequestMapping(value="/searchResultList",method = RequestMethod.GET)
+	public String processSearch(SearchForm form, Model model){
+		form.setCity("南京");		
+		form.setCircle("鼓楼区");
+		model.addAttribute("hotelList",hotelService.searchHotel(form));
 		return "hotelSearch";
 	}
 

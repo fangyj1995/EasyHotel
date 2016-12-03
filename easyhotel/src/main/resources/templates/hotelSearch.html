@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<form action="#" th:action="searchList" th:object="${searchForm}" method="post">
+<form action="#" th:action="searchResultList" th:object="${searchForm}" method="get">
  <input type="text" th:field="*{name}" placeholder="酒店名称" ></input>
  <input type="text" th:field="*{startDate}" placeholder="入住日期（xxxx--xx-xx）" ></input>
  <input type="text" th:field="*{endDate}" placeholder="退房日期（xxxx--xx-xx）" ></input>
@@ -20,14 +20,7 @@
  <input type="text" th:field="*{roomNum}" placeholder="房间数量" ></input>
  <input type="hidden" th:field="*{city}" value="南京"></input>
  <input type="hidden" th:field="*{circle}"  value="鼓楼区"></input>
- <input type="submit" />
- 
- <div class="errors" th:if="${#fields.hasErrors('*')}">
-  <ul>
-   <li th:each="err:${#fields.errors('*')}" th:text="${err}" > </li>
-  </ul>
- </div>
- 
+ <input type="submit" /> 
 </form>
 <hr/>
 

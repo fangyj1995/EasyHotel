@@ -36,7 +36,7 @@ public class SearchDeal {
 		return list;
 	}
     public static List<HotelSearchResultVo> sort(String condition,List<HotelSearchResultVo> list){
-    	System.out.println(condition);
+    	//System.out.println(condition);
     	if(condition==null||condition.trim().equals(""))
     		condition="price";
     	if(condition.equals("price")){

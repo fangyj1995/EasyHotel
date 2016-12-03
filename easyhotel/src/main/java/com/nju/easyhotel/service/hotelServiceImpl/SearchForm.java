@@ -8,19 +8,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class SearchForm {//搜索酒店时提及表单的Vo
 	
-	@NotEmpty(message="酒店名称不能为空")
-	@NotNull(message="酒店名称不能为空")
+
 	private String name;
-	@NotNull(message="入住日期不能为空")
-	@Future(message="入住日期不得早于现在时间")
 	private Date startDate;
-	@NotNull(message="退房日期不能为空")
-	@Future(message="退房日期不得早于现在时间")
 	private Date endDate;
 	private String roomKind;   
-	@Min(value=1,message="房间数量不能小于1")
 	private int roomNum=1;
-	private String sortCondition="rate";//"价格"或"星级"或"评分"或null
+	private String sortCondition="rate";
     private String city;
     private String circle;
 
