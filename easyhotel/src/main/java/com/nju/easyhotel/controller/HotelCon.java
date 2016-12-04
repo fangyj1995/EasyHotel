@@ -53,8 +53,9 @@ public class HotelCon {
 	//处理"酒店搜索"请求,当url为.../easyhotel/hotel/searchResultList时执行这个方法
 	@RequestMapping(value="/searchResultList",method = RequestMethod.GET)
 	public String processSearch(SearchForm form, Model model){
-		form.setCity("南京");		
-		form.setCircle("鼓楼区");
+		//form.setCity("南京");		
+		//form.setCircle("鼓楼区");
+System.out.println(form.getCircle()+form.getName()+form.getStartDate());
 		model.addAttribute("hotelList",hotelService.searchHotel(form));
 		return "hotelSearch";
 	}
