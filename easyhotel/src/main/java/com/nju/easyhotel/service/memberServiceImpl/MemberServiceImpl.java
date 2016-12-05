@@ -25,8 +25,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int getCredit(String memberId) {
-		// TODO Auto-generated method stub
-		return 0;
+		int credit=memberDao.getMemberCredit(memberId);
+		return credit;
 	}
 
 	@Override

@@ -80,14 +80,14 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public int modifyMemberCredit(int memberId, int credit) {
+	public int modifyMemberCredit(String memberId, int credit) {
 		String sql="update member set credit = "+credit+" where id ="+memberId;
 		int count=jdbcTemplate.update(sql);	
 		return count;
 	}
 
 	@Override
-	public int getMemberCredit(int memberId) {
+	public int getMemberCredit(String memberId) {
 		String sql ="select credit from member where id=" +memberId;
 		int credit=jdbcTemplate.queryForObject(sql, Integer.class);
 		return credit;

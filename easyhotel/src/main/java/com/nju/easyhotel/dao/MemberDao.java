@@ -11,6 +11,6 @@ public interface MemberDao {
 	 MemberPo getMemberByName(String memberName);//根据用户名查询
 	 
 	 int check(String memberName,String pwd);//验证用户名密码是否匹配
-	 int modifyMemberCredit(int memberId,int credit);
-	 int getMemberCredit(int memberId);	 
+	 int modifyMemberCredit(String memberId,int credit);
+	 int getMemberCredit(String memberId);	 
 }

@@ -16,7 +16,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public int placeOrder(OrderVo order) {
-		// TODO Auto-generated method stub
+		String id=OrderDeal.getOrderId(order.getMemberId());
 		return 0;
 	}
 

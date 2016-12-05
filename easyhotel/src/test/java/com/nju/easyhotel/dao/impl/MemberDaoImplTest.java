@@ -57,13 +57,13 @@ public class MemberDaoImplTest {
 
 	@Test
 	public void testModifyMemberCredit() {
-		int credit=memberDao.modifyMemberCredit(1,100);
+		int credit=memberDao.modifyMemberCredit("1",100);
 		System.out.println(credit);
 	}
 
 	@Test
 	public void testGetMemberCredit() {
-		int credit=memberDao.getMemberCredit(1);
+		int credit=memberDao.getMemberCredit("1");
 		System.out.println(credit);
 	}
 

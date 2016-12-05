@@ -14,15 +14,19 @@ public class OrderPo {
 	private Date latestExecutionTime;
 	private String roomTypeId;
 	private int roomNum;
+	private int customerNum;
 	private int children;
 	private String state;
 	private Date withdrawTime;
 	private String hotelPromoId;
 	private String webPromoId;
 	private double price;
+	private Date creatTime;
+
+
 	public OrderPo(String id, String memberId, String hotelId, Date startDate, Date endDate, Date checkInTime,
-			Date checkOutTime, Date latestExecutionTime, String roomTypeId, int roomNum, int children, String state,
-			Date withdrawTime, String hotelPromoId, String webPromoId, double price) {
+			Date checkOutTime, Date latestExecutionTime, String roomTypeId, int roomNum, int customerNum, int children,
+			String state, Date withdrawTime, String hotelPromoId, String webPromoId, double price, Date creatTime) {
 		super();
 		this.id = id;
 		this.memberId = memberId;
@@ -34,12 +38,14 @@ public class OrderPo {
 		this.latestExecutionTime = latestExecutionTime;
 		this.roomTypeId = roomTypeId;
 		this.roomNum = roomNum;
+		this.customerNum = customerNum;
 		this.children = children;
 		this.state = state;
 		this.withdrawTime = withdrawTime;
 		this.hotelPromoId = hotelPromoId;
 		this.webPromoId = webPromoId;
 		this.price = price;
+		this.creatTime = creatTime;
 	}
 	public OrderPo() {
 		super();
@@ -140,13 +146,29 @@ public class OrderPo {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public int getCustomerNum() {
+		return customerNum;
+	}
+	public void setCustomerNum(int customerNum) {
+		this.customerNum = customerNum;
+	}
+	
+	public Date getCreatTime() {
+		return creatTime;
+	}
+	public void setCreatTime(Date creatTime) {
+		this.creatTime = creatTime;
+	}
 	@Override
 	public String toString() {
 		return "OrderPo [id=" + id + ", memberId=" + memberId + ", hotelId=" + hotelId + ", startDate=" + startDate
 				+ ", endDate=" + endDate + ", checkInTime=" + checkInTime + ", checkOutTime=" + checkOutTime
 				+ ", latestExecutionTime=" + latestExecutionTime + ", roomTypeId=" + roomTypeId + ", roomNum=" + roomNum
-				+ ", children=" + children + ", state=" + state + ", withdrawTime=" + withdrawTime + ", hotelPromoId="
-				+ hotelPromoId + ", webPromoId=" + webPromoId + ", price=" + price + "]";
+				+ ", customerNum=" + customerNum + ", children=" + children + ", state=" + state + ", withdrawTime="
+				+ withdrawTime + ", hotelPromoId=" + hotelPromoId + ", webPromoId=" + webPromoId + ", price=" + price
+				+ ", creatTime=" + creatTime + "]";
 	}
+
+
 	
 }
