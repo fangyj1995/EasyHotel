@@ -30,7 +30,7 @@ public class HotelServiceImplTest {
 	
 	@Before
 	public void setUp(){
-		form=new SearchForm("",DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"","南京","鼓楼区");			
+		form=new SearchForm("",DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"","南京","新街口地区");			
 	}
 	
 	@Test
