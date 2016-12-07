@@ -25,10 +25,14 @@ public class SearchDeal {
 						 p.getId(),p.getName(),p.getAddress(),
 						 p.getStar_level(),p.getAvg_grade()
 					 );
-				row.addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());
+				if(p.getType()!=null)
+				{
+					row.addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());					
+				}
 				list.add(row);j++;
 			}
 			else{
+				if(p.getType()!=null)
 				list.get(j-1).addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());			
 			}
 	    }
@@ -36,7 +40,7 @@ public class SearchDeal {
 		return list;
 	}
     public static List<HotelSearchResultVo> sort(String condition,List<HotelSearchResultVo> list){
-    	System.out.println(condition);
+    	//System.out.println(condition);
     	if(condition==null||condition.trim().equals(""))
     		condition="price";
     	if(condition.equals("price")){

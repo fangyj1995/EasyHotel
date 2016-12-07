@@ -30,17 +30,19 @@ public class HotelServiceImplTest {
 	
 	@Before
 	public void setUp(){
-		form=new SearchForm("酒店",DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"price","南京","鼓楼区");			
+		form=new SearchForm("",DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"","南京","鼓楼区");			
 	}
 	
 	@Test
 	public void test() {
+		System.out.println("测试搜索酒店");
 		List<HotelSearchResultVo> list=hotelService.searchHotel(form);
 		Iterator<HotelSearchResultVo> iter=list.iterator();
 		while(iter.hasNext()){
 			System.out.println(iter.next());
 		}		
 		assertNotNull(list);
+		System.out.println("测试酒店详情");
 		HotelVo h=hotelService.getHotel("1");
 		assertNotNull(h);
 		System.out.println(h);

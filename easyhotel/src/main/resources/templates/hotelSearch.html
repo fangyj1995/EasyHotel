@@ -2,49 +2,772 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"></meta>
-<title>酒店搜索</title>
-<style>
-  .error{
-  border-color:red;
-  }
-  
-</style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Aviators - byaviators.com"/>
+
+    <script type="text/javascript" src="/js/laydate.js"></script>
+<!-- 日期选择 -->
+
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap-responsive.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/libraries/chosen/chosen.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/libraries/bootstrap-fileupload/bootstrap-fileupload.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/libraries/jquery-ui-1.10.2.custom/css/ui-lightness/jquery-ui-1.10.2.custom.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/css/realia-blue.css" type="text/css" id="color-variant-default"/>
+    <link rel="stylesheet" href="#" type="text/css" id="color-variant"/>
+
+    <title>酒店搜索</title>
 </head>
 <body>
-<form action="#" th:action="searchList" th:object="${searchForm}" method="post">
- <input type="text" th:field="*{name}" placeholder="酒店名称" ></input>
- <input type="text" th:field="*{startDate}" placeholder="入住日期（xxxx--xx-xx）" ></input>
- <input type="text" th:field="*{endDate}" placeholder="退房日期（xxxx--xx-xx）" ></input>
- <input type="text" th:field="*{roomKind}" placeholder="房间种类" ></input>
- <input type="text" th:field="*{roomNum}" placeholder="房间数量" ></input>
- <input type="hidden" th:field="*{city}" value="南京"></input>
- <input type="hidden" th:field="*{circle}"  value="鼓楼区"></input>
- <input type="submit" />
- 
- <div class="errors" th:if="${#fields.hasErrors('*')}">
-  <ul>
-   <li th:each="err:${#fields.errors('*')}" th:text="${err}" > </li>
-  </ul>
- </div>
- 
-</form>
-<hr/>
+<div id="wrapper-outer" >
+    <div id="wrapper">
+        <div id="wrapper-inner">
+            <!-- BREADCRUMB -->
+            <div class="breadcrumb-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <ul class="breadcrumb pull-left">
+                                <li><a href="index.html">Home</a></li>
+                            </ul><!-- /.breadcrumb -->
 
-<div th:each="hotel:${hotelList}">
- <a th:text="${hotel.name}" th:href="${'/easyhotel/hotel/detail/'+hotel.id}"></a><br/>
-  地址：<label th:text="${hotel.address}"></label><br/>
-  星级：<label th:text="${hotel.starLevel}"></label>星<br/>
-  评分：<label th:text="${hotel.avgGrade}"></label>/5
-  <div th:each="room:${hotel.rooms}">
-    <p>
-      <label>房型：</label><label th:text="${room.type}"></label>
-      <label>价格:￥</label><label th:text="${room.price}"></label>
-      <label>剩余房间数量：</label><label th:text="${room.available}"></label>
-    </p>
-  </div>
-  <hr/>
+                            <div class="account pull-right">
+                                <ul class="nav nav-pills">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="registration.html">Registration</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /.span12 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.breadcrumb-wrapper -->
+
+            <!-- HEADER -->
+            <div id="header-wrapper">
+                <div id="header">
+                    <div id="header-inner">
+                        <div class="container">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="row">
+                                        <div class="logo-wrapper span4">
+                                            <a href="#nav" class="hidden-desktop" id="btn-nav">Toggle navigation</a>
+
+                                            <div class="logo">
+                                                <a href="index.html" title="Home">
+                                                    <img src="assets/img/logo.png" alt="Home" />
+                                                </a>
+                                            </div><!-- /.logo -->
+
+                                            <div class="site-name">
+                                                <a href="/" title="Home" class="brand">Realia</a>
+                                            </div><!-- /.site-name -->
+
+                                            <div class="site-slogan">
+                                                <span>Real estate &amp; Rental<br/>made easy</span>
+                                            </div><!-- /.site-slogan -->
+                                        </div><!-- /.logo-wrapper -->
+
+                                        <div class="info">
+                                            <div class="site-email">
+                                                <a href="mailto:info@byaviators.com">info@byaviators.com</a>
+                                            </div><!-- /.site-email -->
+
+                                            <div class="site-phone">
+                                                <span>333-666-777</span>
+                                            </div><!-- /.site-phone -->
+                                        </div><!-- /.info -->
+
+                                        <a class="btn btn-primary btn-large list-your-property arrow-right" href="list-your-property.html">List your property</a>
+                                    </div><!-- /.row -->
+                                </div><!-- /.navbar-inner -->
+                            </div><!-- /.navbar -->
+                        </div><!-- /.container -->
+                    </div><!-- /#header-inner -->
+                </div><!-- /#header -->se
+
+            <!-- NAVIGATION -->
+            <div id="navigation">
+                <div class="container">
+                    <div class="navigation-wrapper">
+                        <div class="navigation clearfix-normal">
+
+                            <ul class="nav">
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Homepage</span>
+                                    <ul>
+                                        <li><a href="index-slider.html">Homepage with slider</a></li>
+                                        <li><a href="index.html">Homepage with map</a></li>
+                                        <li><a href="index-simple.html">Simple homepage</a></li>
+                                        <li><a href="index-carousel.html">Homepage with carousel</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Listing</span>
+                                    <ul>
+                                        <li><a href="listing-grid.html">Listing grid</a></li>
+                                        <li><a href="listing-grid-filter.html">Listing grid with filter</a></li>
+                                        <li><a href="listing-rows.html">Listing rows</a></li>
+                                        <li><a href="listing-rows-filter.html" >Listing rows with filter</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Pages</span>
+                                    <ul>
+                                        <li><a href="about-us.html">About us</a></li>
+                                        <li><a href="our-agents.html">Our agents</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                                        <li class="menuparent">
+                                            <span class="menuparent nolink">Another level</span>
+                                            <ul>
+                                                <li><a href="contact-us.html">Contact Us</a></li><li><a href="http://www.17sucai.com">More theme</a></li>
+                                                <li><a href="grid-system.html">Grid system</a></li>
+                                                <li><a href="typography.html">Typography</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="404.html">404 page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menuparent">
+                                    <span class="menuparent nolink">Pricing</span>
+                                    <ul>
+                                        <li><a href="pricing-boxed.html">Boxed pricing</a></li>
+                                        <li><a href="pricing-multiple.html">Multiple pricing</a></li>
+                                        <li><a href="pricing-simple.html">Simple Pricing</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact-us.html">Contact Us</a></li><li><a href="http://www.17sucai.com">More theme</a></li>
+                            </ul><!-- /.nav -->
+
+                            <!-- <div class="language-switcher">
+                                <div class="current en"><a href="/" lang="en">English</a></div>
+                                <div class="options">
+                                    <ul>
+                                        <li class="fr"><a href="#">Français</a></li>
+                                        <li class="de"><a href="#">Deutsch</a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+
+                            <!-- <form method="get" class="site-search" action="?">
+                                <div class="input-append">
+                                    <input title="Enter the terms you wish to search for." class="search-query span2 form-text" placeholder="Search" type="text" name="" />
+                                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                                </div>
+                            </form> -->
+                        </div><!-- /.navigation -->
+                    </div><!-- /.navigation-wrapper -->
+                </div><!-- /.container -->
+            </div><!-- /.navigation -->
+
+            <!-- CONTENT -->
+            <div id="content">
+<div class="container">
+
+    <div id="main">
+        <div class="row">
+            <div class="span9">
+                <h1 class="page-header">酒店列表</h1>
+                <div class="properties-rows">
+<div class="filter">
+    <form action="?" method="get" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputSortBy">
+                Sort by
+                <span class="form-required" title="This field is required.">*</span>
+            </label>
+            <div class="controls">
+                <select id="inputSortBy"  onchange="sort(this.selectedIndex)">
+                    <option id="price">价格</option>
+                    <option id="star">星级</option>
+                    <option id="grade">评分</option>
+                </select>
+            </div><!-- /.controls -->
+        </div><!-- /.control-group -->
+    </form>
+</div><!-- /.filter -->
+</div><!-- /.properties-rows -->                
+<div class="properties-grid">
+    <div class="row">
+
+        <div class="property span3" th:each="hotel:${hotelList}">
+
+            <div class="image">
+                <div class="content">
+                    <a href="${'easyhotel/hotel/detail/'+hotel.id}"></a>
+                    <img src="assets/img/tmp/property-small-1.png" alt="" />
+                </div><!-- /.content -->
+                <div th:each="room:${hotel.rooms}">
+                
+                 <div class="price">￥<label th:text="${room.price}"></label></div><!-- /.price -->
+                 <div class="reduced"><label th:text="${room.type}"></label></div><!-- /.reduced --><!--房间类型-->            
+                 <div class="reduced"><label th:text="${room.available}"></label></div><!-- /.reduced --><!--房间数量-->                        
+              
+                </div>
+               
+            </div><!-- /.image -->
+
+            <div class="title">
+                <h2><a href="${'easyhotel/hotel/detail/'+hotel.id}" th:text="${hotel.name}"></a></h2>
+            </div><!-- /.title -->
+
+            <div class="location"><label th:text="${hotel.address}"></label></div><!-- /.location -->
+            <div class="area">
+                <span class="key">星级:</span><!-- /.key -->
+                <span class="value"><label th:text="${hotel.starLevel}"></label>星</span><!-- /.value -->
+            </div><!-- /.area -->
+
+            <div class="area">
+                <span class="key">评分:</span><!-- /.key -->
+                <span class="value"><label th:text="${hotel.avgGrade}"></label>/5</span><!-- /.value -->
+            </div><!-- /.area -->
+
+            <!-- <div class="bedrooms"><div class="content">4</div></div>
+            <div class="bathrooms"><div class="content">3</div></div>-->
+
+        </div><!-- /.property sapn3-->
+
+    </div><!-- /.row -->
+</div><!-- /.properties-grid -->
+
+<div class="pagination pagination-centered">
+    <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li class="active"><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">next</a></li>
+        <li><a href="#">last</a></li>
+    </ul>
+</div><!-- /.pagination -->            
+</div><!-- /.span9 --> 
+            <div class="sidebar span3">
+                <h2>搜索条件</h2>
+<div class="property-filter widget">
+    <div class="content">
+        <form method="get" action="/easyhotel/hotel/searchResultList" name="form1" th:object="${searchForm}">
+
+            <input type="hidden" th:field="*{startDate}" name="startdate" value="" ></input>
+            <input type="hidden" th:field="*{endDate}" name="enddate" value="" ></input>
+            <input type="hidden" th:field="*{sortCondition}" name="sortby" value="" ></input>
+
+          
+            <div class="city control-group">
+                <label class="control-label" for="inputCity">
+                    城市
+                </label>
+                <div class="controls">
+                 
+                    <select   id="citys" th:field="*{city}" name="city"   onchange="circleName(this.selectedIndex)">  
+                        <option   value="">请选择城市</option>  
+                    </select> 
+                
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="circle control-group">
+                <label class="control-label" for="inputCircle">
+                    商圈
+                </label>
+                <div class="controls">
+                    <select   name="circle" th:field="*{circle}">  
+                        <option   value="">请选择商圈</option>
+                    </select>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+
+            <div class="demo3">
+                <label class="control-label" for="inputDate">
+                    日期
+                </label>
+                <ul class="inline" style="color: black;">
+                开始日：<li class="inline laydate-icon" id="start" style="width:215px; margin-right:10px;"></li>
+                结束日：<li class="inline laydate-icon" id="end" style="width:215px;"></li> 
+                </ul>
+            </div>
+
+            <div class="hotelname control-group">
+                <label class="control-label" for="inputHotelName">
+                    酒店名称
+                </label>
+                <div class="controls">
+                    <input type="text" th:field="*{name}" name="hotelname" style="height: 25px;" ></input>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="number control-group">
+                <label class="control-label" for="inputType">
+                    房间类型
+                </label>
+                <div class="controls">
+                    <input type="text" th:field="*{roomKind}" name="roomtype" style="height: 25px;" ></input>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="number control-group">
+                <label class="control-label" for="inputNumber">
+                    房间数量
+                </label>
+                <div class="controls">
+                    <input type="text" th:field="*{roomNum}" name="roomnumber" style="height: 25px;" ></input>
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <!-- <div>
+                <label class="control-label" for="inputPrice">
+                    价格区间
+                </label>
+                 <div class="controls" style="color: black;">
+                    <div>100元以下<input name="price2" type="checkbox" value="" /></div>
+                    <div>100-300元<input name="price2" type="checkbox" value="" /></div>
+                    <div>300-500元<input name="price3" type="checkbox" value="" /></div>
+                    <div>500-700元<input name="price4" type="checkbox" value="" /></div>
+                    <div>700-900元<input name="price5" type="checkbox" value="" /></div>
+                    <div>900元以上<input name="price6" type="checkbox" value="" /></div>
+                </div>
+            </div> -->
+
+            <!-- <div class="star control-group">
+                <label class="control-label" for="inputStar">
+                    星级
+                </label>
+                <div class="controls">
+                    <select id="inputStar">
+                        <option id="all">全部</option>
+                        <option id="2xing">二星及以下</option>
+                        <option id="3xing">三星</option>
+                        <option id="4xing">四星</option>
+                        <option id="5xing">五星</option>
+                        <option id="6xing">六星及以上</option>
+                    </select>
+                </div>
+            </div> -->
+
+            <div class="booked control-group">
+                <div class="controls">
+                    <label class="control-label" for="inputStar">
+                    只搜索预定过的酒店
+                    </label>
+                    <label style="color: black;">是<input name="booked" type="radio" value="1" ></input></label> 
+                    <label style="color: black;">否<input name="booked" type="radio" value="0" ></input></label> 
+                </div><!-- /.controls -->
+            </div><!-- /.control-group -->
+
+            <div class="form-actions">
+                <input type="button" value="搜索" class="btn btn-primary btn-large" onclick="getValue()" ></input>
+            </div><!-- /.form-actions -->
+        </form>
+    </div><!-- /.content -->
+</div><!-- /.property-filter -->
+
+                
+            </div>
+        </div>
+    </div>
 </div>
 
+    </div><!-- /#content -->
+</div><!-- /#wrapper-inner -->
+
+<div id="footer-wrapper">
+    <div id="footer-top">
+        <div id="footer-top-inner" class="container">
+            <div class="row">
+                <div class="widget properties span3">
+                    <div class="title">
+                        <h2>Most Recent</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="assets/img/tmp/property-small-1.png" alt="" />
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="assets/img/tmp/property-small-2.png" alt="" />
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+
+                        <div class="property">
+                            <div class="image">
+                                <a href="detail.html"></a>
+                                <img src="assets/img/tmp/property-small-3.png" alt="" />
+                            </div><!-- /.image -->
+                            <div class="wrapper">
+                                <div class="title">
+                                    <h3>
+                                        <a href="detail.html">27523 Pacific Coast</a>
+                                    </h3>
+                                </div><!-- /.title -->
+                                <div class="location">Palo Alto CA</div><!-- /.location -->
+                                <div class="price">€2 300 000</div><!-- /.price -->
+                            </div><!-- /.wrapper -->
+                        </div><!-- /.property -->
+                    </div><!-- /.content -->
+                </div><!-- /.properties-small -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2>Contact us</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <table class="contact">
+                            <tbody>
+                            <tr>
+                                <th class="address">Address:</th>
+                                <td>1900 Pico Blvd<br/>Santa Monica, CA 90405<br/>United States<br/></td>
+                            </tr>
+                            <tr>
+                                <th class="phone">Phone:</th>
+                                <td>+48 123 456 789</td>
+                            </tr>
+                            <tr>
+                                <th class="email">E-mail:</th>
+                                <td><a href="mailto:info@yourcompany.com">info@example.com</a></td>
+                            </tr>
+                            <tr>
+                                <th class="skype">Skype:</th>
+                                <td>your.company</td>
+                            </tr>
+                            <tr>
+                                <th class="gps">GPS:</th>
+                                <td>34.016811<br/>-118.469009</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">Useful links</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <ul class="menu nav">
+                            <li class="first leaf"><a href="404.html">404 page</a></li>
+                            <li class="leaf"><a href="about-us.html">About us</a></li>
+                            <li class="leaf"><a href="contact-us.html">Contact us</a></li>
+                            <li class="leaf"><a href="faq.html">FAQ</a></li>
+                            <li class="leaf"><a href="grid-system.html">Grid system</a></li>
+                            <li class="leaf"><a href="our-agents.html">Our agents</a></li>
+                            <li class="last leaf"><a href="typography.html">Typography</a></li>
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+
+                <div class="widget span3">
+                    <div class="title">
+                        <h2 class="block-title">Say hello!</h2>
+                    </div><!-- /.title -->
+
+                    <div class="content">
+                        <form method="post">
+                            <div class="control-group">
+                                <label class="control-label" for="inputName">
+                                    Name
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+                                <div class="controls">
+                                    <input type="text" id="inputName" ></input>
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">
+                                    Email
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" ></input>
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="control-group">
+                                <label class="control-label" for="inputMessage">
+                                    Message
+                                    <span class="form-required" title="This field is required.">*</span>
+                                </label>
+
+                                <div class="controls">
+                                    <textarea id="inputMessage"></textarea>
+                                </div><!-- /.controls -->
+                            </div><!-- /.control-group -->
+
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary arrow-right" value="Send" ></input>
+                            </div><!-- /.form-actions -->
+                        </form>
+                    </div><!-- /.content -->
+                </div><!-- /.widget -->
+            </div><!-- /.row -->
+        </div><!-- /#footer-top-inner -->
+    </div><!-- /#footer-top -->
+
+    <div id="footer" class="footer container">
+        <div id="footer-inner">
+            <div class="row">
+                <div class="span6 copyright">
+                    <p>© Copyright 2013 by More Templates <a href="http://www.17sucai.com/" target="_blank" title="17素材网">17素材网</a> - Collect from <a href="http://www.17sucai.com/" title="网页模板" target="_blank">网页模板</a> All rights reserved.</p>
+                </div><!-- /.copyright -->
+
+                <div class="span6 share">
+                    <div class="content">
+                        <ul class="menu nav">
+                            <li class="first leaf"><a href="http://www.facebook.com" class="facebook">Facebook</a></li>
+                            <li class="leaf"><a href="http://flickr.net" class="flickr">Flickr</a></li>
+                            <li class="leaf"><a href="http://plus.google.com" class="google">Google+</a></li>
+                            <li class="leaf"><a href="http://www.linkedin.com" class="linkedin">LinkedIn</a></li>
+                            <li class="leaf"><a href="http://www.twitter.com" class="twitter">Twitter</a></li>
+                            <li class="last leaf"><a href="http://www.vimeo.com" class="vimeo">Vimeo</a></li>
+                        </ul>
+                    </div><!-- /.content -->
+                </div><!-- /.span6 -->
+            </div><!-- /.row -->
+        </div><!-- /#footer-inner -->
+    </div><!-- /#footer -->
+</div><!-- /#footer-wrapper -->
+</div><!-- /#wrapper -->
+</div><!-- /#wrapper-outer -->
+</div>
+<div class="palette">
+    <div class="toggle">
+        <a href="#">Toggle</a>
+    </div><!-- /.toggle -->
+
+    <div class="inner">
+        <div class="headers">
+            <h2>Header styles</h2>
+            <ul>
+                <li><a class="header-light">Light</a></li>
+                <li><a class="header-normal">Normal</a></li>
+                <li><a class="header-dark">Dark</a></li>
+            </ul>
+        </div><!-- /.headers -->
+
+        <div class="patterns">
+            <h2>Background patterns</h2>
+            <ul>
+                <li><a class="pattern-cloth-alike">cloth-alike</a></li>
+                <li><a class="pattern-corrugation">corrugation</a></li>
+                <li><a class="pattern-diagonal-noise">diagonal-noise</a></li>
+                <li><a class="pattern-dust">dust</a></li>
+                <li><a class="pattern-fabric-plaid">fabric-plaid</a></li>
+                <li><a class="pattern-farmer">farmer</a></li>
+                <li><a class="pattern-grid-noise">grid-noise</a></li>
+                <li><a class="pattern-lghtmesh">lghtmesh</a></li>
+                <li><a class="pattern-pw-maze-white">pw-maze-white</a></li>
+                <li><a class="pattern-none">none</a></li>
+            </ul>
+        </div>
+
+        <div class="colors">
+            <h2>Color variants</h2>
+            <ul>
+                <li><a href="assets/css/realia-red.css" class="red">Red</a></li>
+                <li><a href="assets/css/realia-magenta.css" class="magenta">Magenta</a></li>
+                <li><a href="assets/css/realia-brown.css" class="brown">Brown</a></li>
+                <li><a href="assets/css/realia-orange.css" class="orange">Orange</a></li>
+                <li><a href="assets/css/realia-brown-dark.css" class="brown-dark">Brown dark</a></li>
+
+                <li><a href="assets/css/realia-gray-red.css" class="gray-red">Gray Red</a></li>
+                <li><a href="assets/css/realia-gray-magenta.css" class="gray-magenta">Gray Magenta</a></li>
+                <li><a href="assets/css/realia-gray-brown.css" class="gray-brown">Gray Brown</a></li>
+                <li><a href="assets/css/realia-gray-orange.css" class="gray-orange">Gray Orange</a></li>
+                <li><a href="assets/css/realia-gray-brown-dark.css" class="gray-brown-dark">Gray Brown dark</a></li>
+
+                <li><a href="assets/css/realia-green-light.css" class="green-light">Green light</a></li>
+                <li><a href="assets/css/realia-green.css" class="green">Green</a></li>
+                <li><a href="assets/css/realia-turquiose.css" class="turquiose">Turquiose</a></li>
+                <li><a href="assets/css/realia-blue.css" class="blue">Blue</a></li>
+                <li><a href="assets/css/realia-violet.css" class="violet">Violet</a></li>
+
+                <li><a href="assets/css/realia-gray-green-light.css" class="gray-green-light">Gray Green light</a></li>
+                <li><a href="assets/css/realia-gray-green.css" class="gray-green">Gray Green</a></li>
+                <li><a href="assets/css/realia-gray-turquiose.css" class="gray-turquiose">Gray Turquiose</a></li>
+                <li><a href="assets/css/realia-gray-blue.css" class="gray-blue">Gray Blue</a></li>
+                <li><a href="assets/css/realia-gray-violet.css" class="gray-violet">Gray Violet</a></li>
+            </ul>
+        </div><!-- /.colors -->
+
+        <a href="#" class="btn btn-primary reset">Reset default</a>
+    </div><!-- /.inner -->
+</div><!-- /.palette -->
+
+<script type="text/javascript">
+/*<![CDATA[*/
+
+function sort(n){
+	if(n==0){
+		document.form1.sortCondition.value="price";
+	}
+	if(n==1){
+		document.form1.sortCondition.value="star";
+	}
+	if(n==2){
+		document.form1.sortCondition.value="rate";
+	}
+}
+
+function getValue(){
+	document.form1.startDate.value=document.getElementById("start").innerHTML;
+	document.form1.endDate.value=document.getElementById("end").innerHTML;
+	document.form1.submit();
+}
+
+
+  
+ 
+ function   circleName(n){
+ 	var e=document.form1.circle;  
+    for(var i=e.options.length;i>0;i--) 
+    	e.remove(i);  
+    if(n==0)
+    	return;  
+    var a=("city"+n);   //得到城市的数组名  
+    if(a=="city1"){
+    	e.options.add(new   Option("新街口地区","新街口地区"));
+        e.options.add(new   Option("夫子庙地区","夫子庙地区"));
+        e.options.add(new   Option("玄武湖地区","玄武湖地区"));
+        e.options.add(new   Option("江宁开发区","江宁开发区"));
+        e.options.add(new   Option("仙林学府区","仙林学府区"));
+        e.options.add(new   Option("火车站地区","火车站地区"));
+        e.options.add(new   Option("中山陵地区","中山陵地区"));
+        e.options.add(new   Option("禄口国际机场区","禄口国际机场区"));
+        e.options.add(new   Option("雨花台地区","雨花台地区"));
+    }
+    if(a=="city2"){
+    	e.options.add(new   Option("人民广场地区","人民广场地区"));
+        e.options.add(new   Option("迪士尼度假区","迪士尼度假区"));
+        e.options.add(new   Option("徐家汇地区","徐家汇地区"));
+    }
+    if(a=="city3"){
+    	e.options.add(new   Option("西湖湖滨商圈","西湖湖滨商圈"));
+        e.options.add(new   Option("西溪湿地商圈","西溪湿地商圈"));
+        e.options.add(new   Option("火车东站商圈","火车东站商圈"));
+    }
+    if(a=="city4")
+    {
+    e.options.add(new   Option("王府井商圈","王府井商圈"));
+    e.options.add(new   Option("中关村商圈","中关村商圈"));
+    e.options.add(new   Option("国贸地区","国贸地区"));
+    } 
+ }  
+
+
+!function ()  
+  {  
+  	//alert("hello");
+          var   cityName   =   ["南京",   "上海",   "杭州",   "北京"];  
+          
+          var   e   =   document.form1.city;  
+          
+          for   (var   i=0;   i<cityName.length;   i++)  
+                e.options.add(new   Option(cityName[i]));  
+         
+  }();
+
+
+!function() {
+    laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+    laydate({elem: '#demo'});//绑定元素  
+}();
+
+
+//日期范围限制
+var start = {
+    elem: '#start',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(), //设定最小日期为当前日期
+    max: '2099-06-16', //最大日期
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+         end.min = datas; //开始日选好后，重置结束日的最小日期
+         end.start = datas //将结束日的初始值设定为开始日
+    }
+};
+
+var end = {
+    elem: '#end',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，充值开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+
+//自定义日期格式
+laydate({
+    elem: '#test1',
+    format: 'YYYY年MM月DD日',
+    festival: true, //显示节日
+    choose: function(datas){ //选择日期完毕的回调
+        alert('得到：'+datas);
+    }
+});
+
+//日期范围限定在昨天到明天
+laydate({
+    elem: '#hello3',
+    min: laydate.now(-1), //-1代表昨天，-2代表前天，以此类推
+    max: laydate.now(+1) //+1代表明天，+2代表后天，以此类推
+});
+
+/*]]>*/
+
+</script>
+
+
+
+<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script> -->
+<script type="text/javascript" src="/assets/js/jquery.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.ezmark.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.currency.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/assets/js/retina.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/carousel.js"></script>
+<!-- <script type="text/javascript" src="assets/js/gmap3.min.js"></script>
+<script type="text/javascript" src="assets/js/gmap3.infobox.min.js"></script> -->
+<script type="text/javascript" src="/assets/libraries/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="/assets/libraries/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="/assets/libraries/iosslider/_src/jquery.iosslider.min.js"></script>
+<script type="text/javascript" src="/assets/libraries/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<script type="text/javascript" src="/assets/js/realia.js"></script>
 </body>
 </html>
