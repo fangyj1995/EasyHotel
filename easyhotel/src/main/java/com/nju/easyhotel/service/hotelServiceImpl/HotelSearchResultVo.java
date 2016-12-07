@@ -24,8 +24,11 @@ public class HotelSearchResultVo implements HotelSortInfo{
 	
 	public void addRoomInfo(String type, double price, int available){
 		rooms.add(new RoomInfo(type,price,available));
-	}	
-	private double minPrice(){
+	}
+	public void sortRooms(){
+		Collections.sort(rooms);
+	}
+	private double minPrice(){	
 		Collections.sort(rooms);
 		return rooms.get(0).getPrice();	
 	}
@@ -53,7 +56,7 @@ public class HotelSearchResultVo implements HotelSortInfo{
 
 	@Override
 	public double price() {
-		return minPrice();
+		return rooms.get(0).getPrice();
 	}
 	@Override
 	public double rate() {
@@ -64,7 +67,7 @@ public class HotelSearchResultVo implements HotelSortInfo{
 		return this.getStarLevel();
 	}
 	public String toString(){
-		return id+" "+name+" "+address+" "+starLevel+" "+avgGrade+"\n"+Arrays.toString(rooms.toArray());
+		return id+" "+name+" "+address+" 星级："+starLevel+"  评分："+avgGrade+"\n"+Arrays.toString(rooms.toArray());
 	}
 	private class RoomInfo implements  Comparable<RoomInfo>{
 		private String type;
@@ -89,10 +92,11 @@ public class HotelSearchResultVo implements HotelSortInfo{
 			return type+"  ￥ "+price+"剩余："+available;
 		}
 		@Override
-		public int compareTo(RoomInfo r) {		
+		public int compareTo(RoomInfo r) {
+			
 			if(price==r.price) return 0;
-			else if(price<r.price) return 1;
-			else return -1;
+			else if(price<r.price) return -1;
+			else return 1;
 		}			
 	}
 

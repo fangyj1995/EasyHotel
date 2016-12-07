@@ -29,7 +29,7 @@ public class HotelServiceImpl implements HotelService{
 				searchForm.getCircle()
 				);			
 		List<HotelSearchResultVo> list=SearchDeal.getResultList(poList);
-		//SearchDeal.sort("rate",list);
+		list=SearchDeal.sort(searchForm.getSortCondition(),list);
 		return list;
 	}			
 	public HotelVo getHotel(String id) {

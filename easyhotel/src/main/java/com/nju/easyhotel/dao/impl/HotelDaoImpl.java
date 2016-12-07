@@ -28,31 +28,23 @@ public class HotelDaoImpl implements HotelDao{
 	
 		String sdate=DateFormat.format(startDate);
 		String edate=DateFormat.format(endDate);
-		String sql1="select * from("
-				+ "select hotel.id,hotel.name as hotelname,address,star_level,avg_grade,city,circle,roomInfo.* from"
-				+ "("
-				+ "select "
-				+ "room_type.hotel_key as hotelid,"
-				+ "room_type.name as roomtype,"
-				+ "room_type.price,"
-				+ "room_type.num-ifnull(sum(orders.room_num),0) as avail "
-				+ "from room_type  left join orders on room_type.id=orders.room_type_key "
-				+ "and "
-				+ "('"+sdate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time  "
-				+ "or "
-				+ "'"+edate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time"
-				+ ")"
-				+ "where  room_type.name like '%"+roomType+"%' group by room_type.id"
-				+ ") as roomInfo right join hotel on hotel.id=roomInfo.hotelid and avail>0"				
-				+ ") as hotel "
-				+ "where hotelname like '%"+name+"%'  and city='"+city+"' and circle='"+circle+"';";
+		/*
+		 * select hotel.id,hotel.name as hotelname,address,star_level,avg_grade,city,circle,room_type.name as roomtype,room_type.price,room_type.num-ifnull(sum(orders.room_num) ,0) as avail from hotel join room_type on hotel.id=room_type.hotel_key and room_type.name like '%%' and hotel.name like '%酒店%'  and city='南京' and circle='鼓楼区' left join orders on room_type.id=orders.room_type_key and( '2016-12-29' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time  or'2016-12-30' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time) group by room_type.id
+		 */
+		String sql1="select hotel.id,hotel.name as hotelname,address,star_level,avg_grade,city,circle,room_type.name as roomtype,room_type.price,room_type.num-ifnull(sum(orders.room_num) ,0) as avail "
+				+ "from hotel join room_type on hotel.id=room_type.hotel_key "
+				            + "and room_type.name like '%"+roomType+"%' and hotel.name like '%"+name+"%'  and city='"+city+"' and circle='"+circle+"' "
+				            + "left join orders on room_type.id=orders.room_type_key and( "
+				            + "'"+sdate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time  or"
+				            + "'"+edate+"' BETWEEN orders.expect_checkin_time and orders.expect_checkout_time) "
+				            + "group by room_type.id";
 		System.out.println(sql1);	
 		List<HotelSearchResultPo> list=jdbcTemplate.query(sql1, new RowMapper<HotelSearchResultPo>()
 		{
 			@Override
 			public HotelSearchResultPo mapRow(ResultSet rs, int rowNum) throws SQLException {	
 				HotelSearchResultPo r=new HotelSearchResultPo(
-				rs.getString("hotelid"),
+				rs.getString("id"),
 				rs.getString("hotelname"),
 				rs.getString("address"),
 				rs.getInt("star_level"),
