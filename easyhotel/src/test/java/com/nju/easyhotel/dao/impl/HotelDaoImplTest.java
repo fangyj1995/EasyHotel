@@ -37,10 +37,9 @@ public class HotelDaoImplTest {
 
 	@Test
 	public void testSearchHotel() {
-		List<HotelSearchResultPo> list=hotelDao.searchHotel("酒店", DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"大床房",1,"","南京","鼓楼区");
-	    System.out.println(Arrays.toString(list.toArray()));
-	    list=hotelDao.searchHotel("Full", DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"","nanjing","gulou");
-	    System.out.println(Arrays.toString(list.toArray()));
+		List<HotelSearchResultPo> list=hotelDao.searchHotel("酒店", DateFormat.format("2016-12-29"),DateFormat.format("2016-12-30"),"",1,"","南京","新街口地区");
+	    for(HotelSearchResultPo hotel:list)
+		 System.out.println(hotel);
 	}
 
 	@Test

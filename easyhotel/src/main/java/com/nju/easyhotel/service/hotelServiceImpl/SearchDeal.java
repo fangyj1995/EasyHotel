@@ -13,7 +13,7 @@ public class SearchDeal {
 	public static List<HotelSearchResultVo> getResultList(List<HotelSearchResultPo> poList){
 	    Set<String> idSet=new HashSet<String>();
 		List<HotelSearchResultVo> list=new ArrayList<HotelSearchResultVo>();
-		int j=0;
+		int count=0;
 		for(int i=0;i<poList.size();i++){		
 			HotelSearchResultPo p=poList.get(i);		
 			String hotelid=p.getId();	
@@ -29,28 +29,28 @@ public class SearchDeal {
 				{
 					row.addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());					
 				}
-				list.add(row);j++;
+				list.add(row);count++;
 			}
 			else{
 				if(p.getType()!=null)
-				list.get(j-1).addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());			
+				list.get(count-1).addRoomInfo(p.getType(), p.getPrice(), p.getAvailable());			
 			}
 	    }
-		
+		for(HotelSearchResultVo hotel:list){
+			hotel.sortRooms();
+		}
+		System.out.println(list.size()+"条酒店信息");
 		return list;
 	}
     public static List<HotelSearchResultVo> sort(String condition,List<HotelSearchResultVo> list){
-    	//System.out.println(condition);
     	if(condition==null||condition.trim().equals(""))
     		condition="price";
-    	if(condition.equals("price")){
-    		list.sort(HotelComparator.price());
-    	}
-    	else if(condition.equals("rate")){
-    		list.sort(HotelComparator.rate());
-    	}
+    	if(condition.equals("star"))
+    		list.sort(HotelComparator.starLevel()); 
+    	else if(condition.equals("rate"))
+    		list.sort(HotelComparator.rate());    	
     	else
-    		list.sort(HotelComparator.starLevel());      	
+    		list.sort(HotelComparator.price());      	
     	return list;
     }
 }
